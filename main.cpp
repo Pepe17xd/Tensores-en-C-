@@ -99,8 +99,6 @@ public:
         return Tensor(shape, values);
     }
 
-    // Prototipos requeridos en la clase Tensor
-    //Constructor de copia
     Tensor(const Tensor& otra) {
         total_size = otra.total_size;
         dimensiones=otra.dimensiones;
@@ -114,7 +112,7 @@ public:
         }
     }
 
-    //Asignador de copia
+
     Tensor& operator=(const Tensor& otra) {
         if (this != &otra) {
             if (estado_view) {
@@ -136,7 +134,6 @@ public:
     }
 
 
-    //constructor de movimiento
     Tensor(Tensor&& otra_clase) noexcept{
         total_size = otra_clase.total_size;
         dimensiones = otra_clase.dimensiones;
@@ -153,7 +150,6 @@ public:
         }
     }
 
-    //Asinador de movimiento
     Tensor& operator=(Tensor&& otra_clase) noexcept {
         if (this != &otra_clase) {
             if (estado_view){
@@ -260,7 +256,6 @@ public:
         vector<size_t> resultado(shape,shape+3);
         return Tensor(resultado, valores);
     }
-    //metodo de impresion:
     void print() const {
         for (size_t i = 0; i < total_size; i++) {
             cout << data[i] << " ";
@@ -268,7 +263,6 @@ public:
         cout << endl;
     }
 
-    //Metodo view
     Tensor(const vector<size_t>& new_shape, double* shared_data, size_t total) {
         total_size = total;
         dimensiones=new_shape.size();
@@ -301,13 +295,11 @@ public:
 
     }
 
-    // 7.2 unsqueeze sirve para agregar una dimension mas
 
     Tensor unsqueeze(int posicion) const {
         if (posicion<0 || posicion>dimensiones) {
             throw invalid_argument("Las posiciones no pueden ser negativas o mayores que 3");
         }
-        //Siempre y cuando la poscion es la tercera, ya no se puede pq pasaria a la cuarta dimension
 
         if (dimensiones+1>3) {
             throw invalid_argument("No se puede agregar uno mas, ya que sobrepasa las dimensiones conocidas");
@@ -331,7 +323,6 @@ public:
         cout << endl;
     }
 
-    // 8 concatenacion
 
     static Tensor concat(const Tensor& t1, const Tensor& t2, int dimension) {
         if (dimension<0 || dimension>t1.dimensiones) {
@@ -474,7 +465,6 @@ public:
 };
 
 
-//El menu
 int main() {
     srand(time(0));
     Tensor tensor_1 = Tensor::random({1000, 20, 20}, 0.0, 1.0);
