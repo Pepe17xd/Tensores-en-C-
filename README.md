@@ -32,4 +32,9 @@ El codigo cuenta con lo siguiente tensores pre definidos:
 - `arange(min, max)`: secuencia de valores.  
 
 
-Se implementa una clase base:
+Se implementa una clase base y las clases derivadas como: 
+- ReLU
+- Sigmoid
+Para su aplicacion, se usa tensor.apply(transform)
+
+Para el main se implementa un red neuronal simple que genera un tensor inicial de de dimensiones (1000 x 20 x 20), se trasnforma con view a (1000 x 400) y se le multiplica de forma matricial con un tensor de (1000 x 400) y se añade bias  (1 x 100) y se le aplica la funcion ReLU. Des pues de ello se aplica una multiplicacion matricial con tensor (100 x 10) y a eso se se añade bias de (1 x 10), y se le aplica la funcion sigmoid y finalmente se imprime el resultado. 
