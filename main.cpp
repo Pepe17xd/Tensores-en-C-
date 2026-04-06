@@ -437,7 +437,6 @@ class TensorTransform{
     virtual ~TensorTransform() =default;
 };
 
-//La clase TRasformacion del tensor y el metodo apply que se implmento fuera.
 Tensor Tensor::apply(const TensorTransform &transform) const {
     return transform.apply(*this);
 }
